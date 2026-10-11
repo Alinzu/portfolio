@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphic Designer Portfolio</title>
+    <style>
+        /* --- CẤU HÌNH BIẾN MÀU SẮC CHỦ ĐẠO --- */
+        :root {
+            --color-1: #cdb4db;
+            --color-2: #ffc8dd;
+            --color-3: #ffafcc;
+            --color-4: #bde0fe;
+            --color-5: #a2d2ff;
+            --text-dark: #2b2d42;
+            --text-light: #ffffff;
+        }
+
+        /* --- CSS RESET & CẤU HÌNH SCROLL SNAPPING --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: #faf9f6;
+            /* Kích hoạt trượt bám section theo chiều dọc */
+            scroll-snap-type: y mandatory;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+
+        /* --- THANH ĐIỀU HƯỚNG (NAVIGATION) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--text-dark);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Menu Mobile Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-dark);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* --- CẤU HÌNH CHUNG CHO CÁC SECTION --- */
+        section {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 8% 40px 8%;
+            /* Bám dính tiêu điểm khi cuộn */
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* --- HIỆU ỨNG XUẤT HIỆN (ANIMATION EFFECTS) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
+
+        /* --- CHI TIẾT TỪNG SECTION --- */
+
+        /* 1. Home Section */
+        #home {
+            background: linear-gradient(135deg, var(--color-1), var(--color-2));
+            text-align: center;
+        }
+        #home h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        #home p {
+            font-size: 1.5rem;
+            color: rgba(0,0,0,0.7);
+            margin-bottom: 30px;
+        }
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--text-dark);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #000;
+        }
+
+        /* 2. About Section */
+        #about {
+            background: linear-gradient(135deg, var(--color-2), var(--color-3));
+        }
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1000px;
+        }
+        .about-img {
+            width: 300px;
+            height: 300px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--color-3);
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* 3. Gallery Section */
+        #gallery {
+            background: linear-gradient(135deg, var(--color-3), var(--color-4));
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 1100px;
+        }
+        .gallery-item {
+            height: 200px;
+            background-color: rgba(255,255,255,0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 4. Skills Section */
+        #skills {
+            background: linear-gradient(135deg, var(--color-4), var(--color-5));
+        }
+        .skills-container {
+            width: 100%;
+            max-width: 800px;
+        }
+        .skill-bar {
+            margin-bottom: 20px;
+        }
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .bar-outer {
+            width: 100%;
+            height: 15px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .bar-inner {
+            height: 100%;
+            background-color: var(--text-dark);
+            width: 0; /* Sẽ chạy hiệu ứng bằng JS */
+            transition: width 1.5s cubic-bezier(0.1, 0.8, 0.3, 1);
+        }
+
+        /* 5. Educations Section */
+        #educations {
+            background: linear-gradient(135deg, var(--color-5), var(--color-1));
+        }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--text-dark);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid var(--text-dark);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; }
+        .right::after { left: -10px; }
+        .timeline-content {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* 6. Contact Section */
+        #contact {
+            background: linear-gradient(135deg, var(--color-1), var(--color-3));
+        }
+        .contact-form {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            outline: none;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* --- PHẦN HỖ TRỢ ĐIỆN THOẠI (RESPONSIVE) --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 5%;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                width: 70%;
+                height: calc(100vh - 70px);
+                padding: 40px;
+                gap: 30px;
+                transition: 0.3s;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            #home h1 { font-size: 2.5rem; }
+            #home p { font-size: 1.1rem; }
+
+            .about-container {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .about-img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .gallery-item { height: 120px; }
+
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item::after { left: 21px; }
+            .left { text-align: left; }
+            .right { left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#home" class="logo">CREATIVE.</a>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-item active">Home</a></li>
+            <li><a href="#about" class="nav-item">About</a></li>
+            <li><a href="#gallery" class="nav-item">Gallery</a></li>
+            <li><a href="#skills" class="nav-item">Skills</a></li>
+            <li><a href="#educations" class="nav-item">Educations</a></li>
+            <li><a href="#contact" class="nav-item">Contact</a></li>
+        </ul>
+    </header>
+
+    <section id="home">
+        <div class="reveal">
+            <h1>Xin chào, Tôi là Designer</h1>
+            <p>Biến ý tưởng thành sản phẩm thị giác ấn tượng</p>
+            <a href="#gallery" class="btn">Xem tác phẩm</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title reveal">Về Tôi</h2>
+        <div class="about-container">
+            <div class="about-img reveal delay-1">
+                [ Ảnh Chân Dung ]
+            </div>
+            <div class="about-text reveal delay-2">
+                <p>Tôi là một Nhà thiết kế đồ họa với hơn 3 năm kinh nghiệm trong lĩnh vực định vị thương hiệu, thiết kế giao diện ứng dụng và minh họa kỹ thuật số.</p>
+                <p>Phong cách sáng tạo của tôi luôn hướng tới sự tối giản, thanh lịch nhưng không kém phần sống động để giúp các thương hiệu kể câu chuyện của mình một cách tốt nhất.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title reveal">Tác Phẩm</h2>
+        <div class="gallery-grid reveal delay-1">
+            <div class="gallery-item">Branding</div>
+            <div class="gallery-item">UI/UX Design</div>
+            <div class="gallery-item">Illustration</div>
+            <div class="gallery-item">Packaging</div>
+            <div class="gallery-item">Poster Art</div>
+            <div class="gallery-item">3D Render</div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title reveal">Kỹ Năng</h2>
+        <div class="skills-container reveal delay-1">
+            <div class="skill-bar">
+                <div class="skill-info"><span>Photoshop / Illustrator</span><span>90%</span></div>
+                <div class="bar-outer"><div class="bar-inner" data-skill="90%"></div></div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-info"><span>Figma / UI Design</span><span>85%</span></div>
+                <div class="bar-outer"><div class="bar-inner" data-skill="85%"></div></div>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-info"><span>After Effects / Animation</span><span>75%</span></div>
+                <div class="bar-outer"><div class="bar-inner" data-skill="75%"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="educations">
+        <h2 class="section-title reveal">Học Vấn</h2>
+        <div class="timeline reveal delay-1">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>2020 - 2024</h3>
+                    <p>Đại học Mỹ Thuật - Chuyên ngành Đồ Họa</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>2024 - Hiện tại</h3>
+                    <p>Designer Tự Do & Học chuyên sâu UI/UX</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title reveal">Liên Hệ</h2>
+        <form class="contact-form reveal delay-1" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã nhắn tin!');">
+            <input type="text" placeholder="Tên của bạn" required>
+            <input type="email" placeholder="Email liên hệ" required>
+            <textarea rows="5" placeholder="Tin nhắn của bạn gửi đến tôi..." required></textarea>
+            <button type="submit" class="btn" style="border:none; cursor:pointer;">Gửi đi</button>
+        </form>
+    </section>
+
+    <script>
+        // 1. Menu Mobile hoạt động bật/tắt linh hoạt
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // 2. Kích hoạt hiệu ứng xuất hiện khi cuộn tới vùng (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Xử lý riêng cho hiệu ứng chạy thanh phần trăm Skill
+                    const skillBars = entry.target.querySelectorAll('.bar-inner');
+                    skillBars.forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-skill');
+                    });
+                }
+            });
+        }, {
+            threshold: 0.25 // Kích hoạt khi cấu trúc chiếm 25% khung nhìn
+        });
+
+        revealElements.forEach(element => revealObserver.observe(element));
+
+        // 3. Cập nhật trạng thái Active trên thanh Menu khi cuộn qua các Section
+        const sections = document.querySelectorAll('section');
+        
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navItems.forEach(item => {
+                        if (item.getAttribute('href') === `#${id}`) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.5 // Cập nhật menu khi section chiếm 50% màn hình
+        });
+
+        sections.forEach(section => navObserver.observe(section));
+    </script>
+</body>
+</html>

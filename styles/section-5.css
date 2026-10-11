@@ -1,0 +1,97 @@
+#Education {
+    background: linear-gradient(135deg, var(--color-5), var(--color-1));
+    position: relative;
+    min-height: 100vh;
+}
+
+#Education .title {
+    padding-top: 90px;
+    text-align: center;
+}
+
+#Education .container {
+    position: absolute;
+    width: 100%;
+}
+
+#Education .container .line {
+    width: 7px;
+    height: 450px;
+    background-color: black;
+    position: absolute;
+    left: 5%;
+}
+
+#Education .container .pointer1 {
+    top: 40px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 5px solid black;
+    position: absolute;
+    left: calc(5% - 10px);
+    background-color: white;
+}
+
+#Education .container .pointer2 {
+    top: 180px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 5px solid black;
+    position: absolute;
+    left: calc(5% - 10px);
+    background-color: white;
+}
+
+#Education .container h3 {
+    line-height: 0.2rem;
+}
+
+#Education .container .content1 {
+    position: absolute;
+    left: 15%;
+    top: 10px;
+    width: 75%;
+    color: var(--text-dark);
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+#Education .container .content2 {
+    position: absolute;
+    left: 15%;
+    top: 150px;
+    width: 75%;
+    color: var(--text-dark);
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+/* --- HIỆU ỨNG TRƯỢT VÀ FADE XUẤT HIỆN TUẦN TỰ --- */
+
+#Education .section-active {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+#Education .line.section-active { transition-delay: 0.2s; }
+#Education .pointer1.section-active { transition-delay: 0.6s; }
+#Education .content1.section-active { transition-delay: 0.9s; }
+#Education .pointer2.section-active { transition-delay: 1.3s; }
+#Education .content2.section-active { transition-delay: 1.6s; }
+
+#Education .section-active.active-once {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#Education .content1.section-active.active-once,
+#Education .content2.section-active.active-once {
+    opacity: 0.8;
+}

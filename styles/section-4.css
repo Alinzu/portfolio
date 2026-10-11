@@ -1,0 +1,120 @@
+#Skills {
+    background: linear-gradient(135deg, var(--color-4), var(--color-5));
+    position: relative;
+    min-height: 100vh;
+}
+
+#Skills .title {
+    position: absolute;
+    left: 50%;
+    top: 70px;
+    transform: translateX(-50%) translateY(30px);
+    text-align: center;
+    width: 100%;
+}
+
+#Skills .title h1 {
+    font-family: 'Gugi', monospace;
+    font-size: 3rem;
+    font-weight: lighter;
+}
+
+#Skills .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 200px;
+    left: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+#Skills .container div {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    max-width: 160px;
+    height: 130px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#Skills .container div h3 {
+    font-size: 0.95rem;
+    line-height: 1.1rem;
+    margin: 0 0 3px 0;
+}
+
+#Skills .container div p {
+    font-size: 0.75rem;
+    line-height: 0.9rem;
+    margin: 0;
+}
+
+#Skills .section-active {
+    opacity: 0;
+    transition: opacity 2s ease, transform 2s ease;
+}
+
+#Skills .title.section-active {
+    transform: translateX(-50%) translateY(30px);
+}
+
+#Skills .container .section-active {
+    transform: translateY(30px);
+}
+
+#Skills .container .c1 { transition-delay: 0.3s; }
+#Skills .container .c2 { transition-delay: 0.5s; }
+#Skills .container .c3 { transition-delay: 0.7s; }
+#Skills .container .c4 { transition-delay: 0.9s; }
+#Skills .container .c5 { transition-delay: 1.1s; }
+#Skills .container .c6 { transition-delay: 1.3s; }
+#Skills .container .c7 { transition-delay: 1.5s; }
+#Skills .container .c8 { transition-delay: 1.7s; }
+
+#Skills .section-active.active-once {
+    opacity: 1;
+}
+
+#Skills .title.section-active.active-once {
+    transform: translateX(-50%) translateY(0);
+}
+
+#Skills .container .section-active.active-once {
+    transform: translateY(0);
+}
+
+@media (min-width: 1024px) {
+    #Skills .container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 0 50px;
+        top: 220px;
+    }
+
+    #Skills .container div {
+        max-width: 260px;
+        height: 110px;
+        padding: 12px;
+    }
+
+    #Skills .container div h3 {
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        margin-bottom: 5px;
+    }
+
+    #Skills .container div p {
+        font-size: 0.9rem;
+        line-height: 1.1rem;
+    }
+}

@@ -1,0 +1,124 @@
+#Contact {
+    background: linear-gradient(135deg, var(--color-1), var(--color-3));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+}
+
+#Contact .title {
+    padding-top: 90px;
+    text-align: center;
+}
+
+#Contact .contact-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 10px 10px black;
+    box-sizing: border-box;
+}
+
+#Contact .contact-form input,
+#Contact .contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    outline: none;
+    resize: none;
+    box-sizing: border-box;
+}
+
+#Contact .contact-form .btn-black {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--text-dark);
+    color: var(--text-light);
+    border: none;
+}
+
+#Contact .contact-form .btn-black:hover {
+	background-color: var(--color-3);
+	color: var(--text-dark);
+}
+
+.foot {
+    margin-top: 130px;
+    width: 100%;
+    height: 170px;
+    background-color: var(--text-dark);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+.foot .social-links {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* --- HIỆU ỨNG TRƯỢT VÀ FADE XUẤT HIỆN TUẦN TỰ (SOCIALS TỪ TRÁI SANG PHẢI) --- */
+
+#Contact .section-active {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+/* Thứ tự delay tổng thể từ trên xuống và từ trái sang phải */
+#Contact .title.section-active { 
+    transition-delay: 0.2s; 
+}
+
+#Contact .contact-form.section-active { 
+    transition-delay: 0.5s; 
+}
+
+/* Hiện từng icon MXH từ trái sang phải */
+#Contact .social-links .l1.section-active { 
+    transition-delay: 0.8s; 
+}
+
+#Contact .social-links .l2.section-active { 
+    transition-delay: 1.0s; 
+}
+
+#Contact .social-links .l3.section-active { 
+    transition-delay: 1.2s; 
+}
+
+/* Dòng chữ bản quyền xuất hiện cuối cùng */
+#Contact p.section-active { 
+    transition-delay: 1.5s; 
+}
+
+/* Trạng thái kích hoạt hiển thị */
+#Contact .section-active.active-once {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+@media (min-width: 1024px) {
+	.foot{
+    	margin-top: 140px;
+		height: 160px;
+	}
+
+	#Contact .contact-form {
+		width: 50%;
+	}
+}

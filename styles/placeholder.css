@@ -1,0 +1,54 @@
+.circle-200{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.circle-40{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.circle-100{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.circle-150{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.circle-300{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.square-200{
+    width: 200px;
+    height: 200px;
+    background-color: white;
+}
+
+.rounded-50{
+    border-radius: 50px;
+}
+
+.rounded-25{
+    border-radius: 25px;
+}
+
+.box-200{
+    width: 300px;
+    height: 140px;
+    background-color: white;
+}
